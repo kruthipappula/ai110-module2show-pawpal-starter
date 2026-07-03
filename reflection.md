@@ -5,6 +5,8 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+My initial UML design focused on the main aspects to the PawPal+ system: the owner, pet, task, and scheduler classes. Users should be able to add and manage information about themselves and pets. Additionally, users should also be able to create and manage pet care tasks such as feeding, walks, mediciations, grooming, and appointments. Lastly, users should be able to generate and view a daily schedule that organizes tasks based on factors such as priority, duration, and available time. By ensuring these requirements are fulfilled, they should help guide the relationships and responsibilities assigned to each class in my UML design.
+
 - What classes did you include, and what responsibilities did you assign to each?
 
 **b. Design changes**
