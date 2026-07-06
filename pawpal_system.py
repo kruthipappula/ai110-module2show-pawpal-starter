@@ -60,10 +60,8 @@ class Task:
         return replace(self, due_date=next_date, completed=False)
 
     def occurs_on(self, date: datetime.date) -> bool:
-        """Return True if this task is due on the given date."""
-        if self.frequency == "once":
-            return self.due_date == date and not self.completed
-        return self.due_date == date  # "daily" / "weekly": due on this specific occurrence's date
+        """Return True if this task is due on the given date, regardless of completion status."""
+        return self.due_date == date
 
     def start_datetime(self) -> datetime.datetime:
         """Parse the task's time string into a comparable datetime."""

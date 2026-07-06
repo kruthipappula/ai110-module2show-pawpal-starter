@@ -18,16 +18,42 @@ classDiagram
         -description: string
         -time: string
         -frequency: string
+        -duration: int
+        -due_date: Date
         -completed: bool
         +markComplete() void
+        +nextDueDate() Date
+        +nextOccurrence() Task
+        +occursOn(date: Date) bool
+        +startDatetime() DateTime
+        +endDatetime() DateTime
+        +overlaps(other: Task) bool
+    }
+
+    class Conflict {
+        -task_a: Task
+        -pet_a: Pet
+        -task_b: Task
+        -pet_b: Pet
+        +same_pet: bool
+        +warningMessage() string
     }
 
     class Scheduler {
         -owner: Owner
-        +getDailySchedule() List~Task~
+        +getDailySchedule(petName: string, status: string, date: Date) List~Task~
+        +filterTasks(petName: string, status: string) List~Task~
         +sortByTime(tasks: List~Task~) List~Task~
+        +completeTask(task: Task) Task
+        +findConflicts(date: Date) List~Conflict~
+        +describeConflicts(date: Date) List~string~
     }
 
     Owner "1" --> "*" Pet : owns
     Pet "1" --> "*" Task : has
     Scheduler --> Owner : reads tasks from
+    Scheduler ..> Task : completes/inspects
+    Scheduler ..> Conflict : creates
+    Conflict "2" --> "1" Task : references
+    Conflict "2" --> "1" Pet : references
+    Task ..> Task : creates next occurrence

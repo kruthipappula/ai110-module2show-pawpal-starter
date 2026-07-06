@@ -50,7 +50,7 @@ The most helpful prompts were the ones asking Claude to explain why something wo
 - Describe one moment where you did not accept an AI suggestion as-is.
 One moment I did not accept and AI suggestion as-is was when Claude generated a complex UML diagram initially. It suggested adding more attributes and methods than was necessary so I changed the design slightly to make it easy to understand. 
 - How did you evaluate or verify what the AI suggested?
-I evaluated the suggestions by reviewing the code and testing it. I was also able to simplify the logic to make it easier to read and maintain, while still ensuring it worked correctly by running the app and tests. 
+I evaluated the suggestions by reviewing the code and testing it. Using separate chat sessions helped me stay organized because I could focus on one part of the project at a time. I was also able to simplify the logic to make it easier to read and maintain, while still ensuring it worked correctly by running the app and tests. 
 
 ---
 
@@ -59,13 +59,17 @@ I evaluated the suggestions by reviewing the code and testing it. I was also abl
 **a. What you tested**
 
 - What behaviors did you test?
+I tested task completion, adding tasks to pets, sorting tasks by scheduled time, filtering tasks by pet and completion status, recurring task creation, and conflict detection.
 
 - Why were these tests important?
+These tests helped verify that the main features of the scheduler worked correctly. They also helped me catch any bugs before connecting everything to the Streamlit app and gave me more confidence that the system behaved as expected.
 
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
+I am fairly confident that my scheduler works correctly because all of my automated tests passed successfully and I was able to test the app through both the command line and the Streamlit interface.
 - What edge cases would you test next if you had more time?
+If I had more time, I would test tasks that cross midnight, more complicated recurring schedules, and having larger lists of pets and tasks to make sure the system still behaves correctly.
 
 ---
 
@@ -74,11 +78,14 @@ I evaluated the suggestions by reviewing the code and testing it. I was also abl
 **a. What went well**
 
 - What part of this project are you most satisfied with?
+I am most satisfied with the scheduler because it brings together all of the classes and makes the application functional. I also liked the sorting, filtering, recurring tasks, and conflict detection features because they made the scheduler more useful.
 
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
+If I had another iteration, I would try to improve the scheduler by adding more complex priority-based scheduling or automatic conflict resolution so that pet and task information could be saved between sessions.
 
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+One important thing I learned is that planning the system before writing code made the implementation much easier. I also learned that Claude did a pretty good job of brainstorming, debugging, and reviewing ideas, but it was still critical for me to evaluate its suggestions and make final decisions myself.

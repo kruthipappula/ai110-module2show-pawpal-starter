@@ -10,33 +10,9 @@ st.markdown(
     """
 Welcome to the PawPal+ starter app.
 
-This file is intentionally thin. It gives you a working Streamlit app so you can start quickly,
-but **it does not implement the project logic**. Your job is to design the system and build it.
-
-Use this app as your interactive demo once your backend classes/functions exist.
+This file connects the simple Streamlit UI to your backend classes.
 """
 )
-
-with st.expander("Scenario", expanded=True):
-    st.markdown(
-        """
-**PawPal+** is a pet care planning assistant. It helps a pet owner plan care tasks
-for their pet(s) based on constraints like time, priority, and preferences.
-
-You will design and implement the scheduling logic and connect it to this Streamlit UI.
-"""
-    )
-
-with st.expander("What you need to build", expanded=True):
-    st.markdown(
-        """
-At minimum, your system should:
-- Represent pet care tasks (what needs to happen, how long it takes, priority)
-- Represent the pet and the owner (basic info and preferences)
-- Build a plan/schedule for a day that chooses and orders tasks based on constraints
-- Explain the plan (why each task was chosen and when it happens)
-"""
-    )
 
 st.divider()
 
@@ -93,21 +69,58 @@ st.divider()
 st.subheader("Today's Schedule")
 
 scheduler = Scheduler(owner)
-schedule = scheduler.get_daily_schedule()
 
-for warning in scheduler.describe_conflicts():
-    st.warning(warning)
+if flash := st.session_state.pop("flash", None):
+    st.success(flash)
+
+conflicts = scheduler.find_conflicts()
+if conflicts:
+    for conflict in conflicts:
+        if conflict.same_pet:
+            st.error(conflict.warning_message())
+        else:
+            st.warning(conflict.warning_message())
+else:
+    st.success("No scheduling conflicts today.")
+
+filter_col1, filter_col2 = st.columns(2)
+with filter_col1:
+    pet_filter = st.selectbox("Filter by pet", ["All pets"] + [p.name for p in owner.pets])
+with filter_col2:
+    status_filter = st.selectbox("Filter by status", ["All", "pending", "completed"])
+
+schedule = scheduler.get_daily_schedule(
+    pet_name=None if pet_filter == "All pets" else pet_filter,
+    status=None if status_filter == "All" else status_filter,
+)
+
+pet_by_task = {id(task): pet.name for pet in owner.pets for task in pet.get_tasks()}
 
 if schedule:
-    for task in schedule:
-        col1, col2 = st.columns([4, 1])
-        with col1:
-            status = "Done" if task.completed else "Pending"
-            st.write(f"**{task.time}** — {task.description} ({task.frequency}) · {status}")
-        with col2:
-            if not task.completed:
+    st.table(
+        [
+            {
+                "Time": task.time,
+                "Pet": pet_by_task.get(id(task), "—"),
+                "Task": task.description,
+                "Frequency": task.frequency,
+                "Status": "✅ Done" if task.completed else "⏳ Pending",
+            }
+            for task in schedule
+        ]
+    )
+
+    pending = [task for task in schedule if not task.completed]
+    if pending:
+        st.write("Mark a task complete:")
+        for task in pending:
+            col1, col2 = st.columns([4, 1])
+            with col1:
+                st.write(f"**{task.time}** — {pet_by_task.get(id(task), '—')}: {task.description}")
+            with col2:
                 if st.button("Mark complete", key=f"complete-{id(task)}"):
                     scheduler.complete_task(task)
+                    st.session_state.flash = f"Marked '{task.description}' complete!"
                     st.rerun()
 else:
     st.info("No tasks to schedule yet.")
