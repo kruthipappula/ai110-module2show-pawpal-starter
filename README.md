@@ -57,10 +57,12 @@ The PawPal+ app allows users to:
 ## 🖥️ Sample Output
 
 Owner: Jordan
-Pets:
+
+**Pets:**
 - Mochi (dog)
 - Whiskers (cat)
-Today's Schedule:
+
+**Today's Schedule:**
 07:30 - Feed breakfast (daily)
 08:00 - Morning walk (daily)
 18:00 - Dinner (daily)
