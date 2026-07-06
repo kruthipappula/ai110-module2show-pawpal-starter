@@ -44,15 +44,15 @@ pip install -r requirements.txt
 
 ## 🖥️ Sample Output
 
-Paste a sample of your app's CLI or Streamlit output here so a reader can see what a generated plan looks like:
+Owner: Jordan
+Pets:
+- Mochi (dog)
+- Whiskers (cat)
+Today's Schedule:
+07:30 - Feed breakfast (daily)
+08:00 - Morning walk (daily)
+18:00 - Dinner (daily)
 
-```
-# e.g.:
-# Daily plan for Biscuit (Golden Retriever):
-#   08:00 — Morning walk (30 min) [priority: high]
-#   09:00 — Feeding (10 min) [priority: high]
-#   ...
-```
 
 ## 🧪 Testing PawPal+
 
@@ -72,14 +72,12 @@ Sample test output:
 
 ## 📐 Smarter Scheduling
 
-> Fill in once you've implemented scheduling logic.
-
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | | 'Scheduler.sort_by_time()' | Sorts tasks in chronological order based on their scheduled time. |
+| Filtering | | 'Scheduler.filter_tasks()' | Filters tasks by pet name or completion status (completed or pending). |
+| Conflict handling | | 'Scheduler.find_conflicts()', 'Scheduler.describe_conflicts()' | Detects overlapping task times and displays warning messages instead of interrupting the program. |
+| Recurring tasks | | 'Task.next_due_date()', 'Task.next_occurence()', 'Scheduler.complete_task()' | Automatically creates the next occurence of daily and weekly tasks after they are completed. |
 
 ## 📸 Demo Walkthrough
 
