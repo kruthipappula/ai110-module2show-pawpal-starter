@@ -90,26 +90,24 @@ else:
 
 st.divider()
 
-st.subheader("Build Schedule")
+st.subheader("Today's Schedule")
 
-if st.button("Generate schedule"):
-    scheduler = Scheduler(owner)
-    schedule = scheduler.get_daily_schedule()
+scheduler = Scheduler(owner)
+schedule = scheduler.get_daily_schedule()
 
-    for warning in scheduler.describe_conflicts():
-        st.warning(warning)
+for warning in scheduler.describe_conflicts():
+    st.warning(warning)
 
-    if schedule:
-        st.table(
-            [
-                {
-                    "time": t.time,
-                    "description": t.description,
-                    "frequency": t.frequency,
-                    "completed": t.completed,
-                }
-                for t in schedule
-            ]
-        )
-    else:
-        st.info("No tasks to schedule yet.")
+if schedule:
+    for task in schedule:
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            status = "Done" if task.completed else "Pending"
+            st.write(f"**{task.time}** — {task.description} ({task.frequency}) · {status}")
+        with col2:
+            if not task.completed:
+                if st.button("Mark complete", key=f"complete-{id(task)}"):
+                    scheduler.complete_task(task)
+                    st.rerun()
+else:
+    st.info("No tasks to schedule yet.")

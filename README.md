@@ -56,18 +56,43 @@ Today's Schedule:
 
 ## 🧪 Testing PawPal+
 
-```bash
-# Run the full test suite:
-pytest
+Run the test suite: 
 
-# Run with coverage:
-pytest --cov
+```bash
+python -m pytest
 ```
+**What the tests cover:**
+-Task completion behavior
+-Adding tasks to a pet
+-Sorting tasks by scheduled time
+-Filtering tasts by pet and completion status
+-Recurring task creation (daily and weekly)
+-Conflict detection for overlapping tasks
+
+**Confidence:** ★★★★☆ (4/5) — checks the main scheduling features and behavior; still additional edge cases that could be tested, such as tasks crossing midnight, more complex recurring schedules, and larger numbers of pets and tasks
 
 Sample test output:
 
 ```
-# Paste your pytest output here
+PS C:\Users\srikr\OneDrive\Desktop\.vscode\CodePath\ai110-module2show-pawpal-starter> python -m pytest
+========================================================================================= test session starts ==========================================================================================
+platform win32 -- Python 3.13.0, pytest-9.1.0, pluggy-1.6.0
+rootdir: C:\Users\srikr\OneDrive\Desktop\.vscode\CodePath\ai110-module2show-pawpal-starter
+plugins: anyio-4.13.0
+collected 19 items                                                                                                                                                                                      
+
+tests\test_pawpal.py ...................                                                                                                                                                          [100%]
+
+========================================================================================== 19 passed in 0.08s ==========================================================================================                                                                        python -m pytest:\Users\srikr\OneDrive\Desktop\.vscode\CodePath\ai110-module2show-pawpal-starter> 
+====================================== test session starts ======================================
+platform win32 -- Python 3.13.0, pytest-9.1.0, pluggy-1.6.0
+rootdir: C:\Users\srikr\OneDrive\Desktop\.vscode\CodePath\ai110-module2show-pawpal-starter
+plugins: anyio-4.13.0
+collected 19 items                                                                               
+
+tests\test_pawpal.py ...................                                                   [100%]
+
+====================================== 19 passed in 0.09s =======================================
 ```
 
 ## 📐 Smarter Scheduling

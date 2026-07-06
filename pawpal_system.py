@@ -3,6 +3,8 @@ from dataclasses import dataclass, field, replace
 from typing import List, Optional, Dict, Any, Tuple
 import datetime
 
+VALID_FREQUENCIES = {"daily", "weekly", "once"}
+
 
 @dataclass
 class Task:
@@ -12,6 +14,24 @@ class Task:
     duration: int = 15  # minutes
     due_date: datetime.date = field(default_factory=datetime.date.today)
     completed: bool = False
+
+    def __post_init__(self):
+        """Validate fields that the rest of the system assumes are well-formed.
+
+        frequency and time are the two fields occurs_on()/next_due_date()/
+        start_datetime() branch on directly, with no fallback for unknown
+        values — an unvalidated typo (e.g. "onces" or "8:00") would silently
+        misbehave (or crash deep inside strptime) instead of failing at the
+        point where the bad value was introduced.
+        """
+        if self.frequency not in VALID_FREQUENCIES:
+            raise ValueError(
+                f"frequency must be one of {sorted(VALID_FREQUENCIES)}, got {self.frequency!r}"
+            )
+        try:
+            datetime.datetime.strptime(self.time, "%H:%M")
+        except ValueError:
+            raise ValueError(f"time must be in 24-hour HH:MM format, got {self.time!r}") from None
 
     def mark_complete(self):
         """Mark the task as completed."""
