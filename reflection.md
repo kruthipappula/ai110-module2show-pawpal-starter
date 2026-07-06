@@ -37,11 +37,11 @@ I decided that time and duration were the components that mattered the most sinc
 
 - Describe one tradeoff your scheduler makes.
 
-One tradeoff my scheduler makes is that it warns the user about scheduling conflicts but does not automatically rearrange tasks to fix the problem.
+One tradeoff my scheduler makes is that it warns the user about scheduling conflicts but does not automatically rearrange tasks to fix the problem. Instead of making changes on its own, the scheduler leaves the final decision to the user. This means the user has to manually adjust overlapping appointments or tasks, which can take a little more time. However, it prevents the scheduler from making changes that the user may not want or expect.
 
 - Why is that tradeoff reasonable for this scenario?
 
-I think this tradeoff is reasonable because every pet owner might want to handle scheduling conflicts differently. By displaying a warning, the user is alerted and can decide how to adjust their schedule and personalize their schedule according to their needs.
+I think this tradeoff is reasonable because every pet owner might want to handle scheduling conflicts differently. By displaying a warning, the user is alerted and can decide how to adjust their schedule and personalize their schedule according to their needs. This approach also reduces the risk of accidentally moving or deleting important appointments, making the scheduler more reliable and user-friendly.
 
 ---
 
@@ -51,17 +51,17 @@ I think this tradeoff is reasonable because every pet owner might want to handle
 
 - How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
 
-I used Claude throughout the project to help brainstorm my UML design, create the class skeleton, debug logic errors, improve my scheduler, and implementing methods like sorting, filtering, and conflict detection. 
+I used Claude throughout the project to help brainstorm my UML design, create the class skeleton, debug logic errors, improve my scheduler, and implementing methods like sorting, filtering, and conflict detection. I also used it to explain programming concepts that I didn't fully understand and ask ways to make my code more organized. 
 
 - What kinds of prompts or questions were most helpful?
 
-The most helpful prompts were the ones asking Claude to explain why something worked and reviewing my code for improvements as it provided beginner-friendly implementations of certain features.  
+The most helpful prompts were the ones asking Claude to explain why something worked and reviewing my code for improvements as it provided beginner-friendly implementations of certain features. Asking for step-by-step explanations was helpful especially when debugging errors or deciding how to structure classes.
 
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
 
-One moment I did not accept and AI suggestion as-is was when Claude generated a complex UML diagram initially. It suggested adding more attributes and methods than was necessary so I changed the design slightly to make it easy to understand. 
+One moment I did not accept and AI suggestion as-is was when Claude generated a complex UML diagram initially. It suggested adding more attributes and methods than was necessary so I changed the design slightly to make it easy to understand. Instead, I removed unnecessary components and kept only key features that my scheduler needed. 
 
 - How did you evaluate or verify what the AI suggested?
 
