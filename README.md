@@ -63,9 +63,9 @@ Owner: Jordan
 - Whiskers (cat)
 
 **Today's Schedule:**
-07:30 - Feed breakfast (daily)
-08:00 - Morning walk (daily)
-18:00 - Dinner (daily)
+- 07:30 - Feed breakfast (daily)
+- 08:00 - Morning walk (daily)
+- 18:00 - Dinner (daily)
 
 
 ## 🧪 Testing PawPal+
