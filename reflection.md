@@ -38,7 +38,9 @@ I decided that time and duration were the components that mattered the most sinc
 - Describe one tradeoff your scheduler makes.
 
 One tradeoff my scheduler makes is that it warns the user about scheduling conflicts but does not automatically rearrange tasks to fix the problem.
+
 - Why is that tradeoff reasonable for this scenario?
+
 I think this tradeoff is reasonable because every pet owner might want to handle scheduling conflicts differently. By displaying a warning, the user is alerted and can decide how to adjust their schedule and personalize their schedule according to their needs.
 
 ---
